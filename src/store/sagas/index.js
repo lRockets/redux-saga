@@ -20,7 +20,7 @@ function* asyncAdd() {
 function* getName() {
     try {
         let data = yield call(axios.get, 'https://randomuser.me/api');
-        // yield put({ type: 'success' })
+        yield put({ type: 'success', payload: data.data })
     } catch (err) {
         console.log(err)
     }
