@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { add, asyncAdd, getUser } from './actions/counter';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+@connect(state => ({
+    counter: state.counter
+}), { add, asyncAdd, getUser })
+
+class App extends Component {
+    render() {
+        return (
+            <>
+                <div onClick={() => this.props.asyncAdd()}>{this.props.counter}</div>
+                <button onClick={() => this.props.getUser()}>获取数据</button>
+            </>
+        )
+    }
 }
-
 export default App;
